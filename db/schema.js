@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const LikesSchema = new Schema({
-    like: {
-        type: Boolean
+    likedByUser: {
+        type: String
     },
-    count: {
+    starCount: {
         type: Number,
         default: 0
     }
