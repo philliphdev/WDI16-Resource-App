@@ -2,7 +2,12 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
-const { User, Resource, Likes } = require('./schema')
+
+const Schema = require('./schema')
+
+const UserModel = Schema.UserModel
+const ResourceModel = Schema.ResourceModel
+const LikesModel = Schema.LikesModel 
 
 const db = mongoose.connection;
 db.on('error', function (err) {
@@ -12,17 +17,17 @@ db.once('open', function () {
     console.log("Connected to MongoDB!");
 });
 
-const resource1Likes = new Likes({
+const resource1Likes = new LikesModel({
     likedByUser: "George",
-    count: 25
+    starCount: 25
 })
 
-const resource2Likes = new Likes({
+const resource2Likes = new LikesModel({
     likedByUser: "George",
-    count: 30
+    starCount: 30
 })
 
-const resource1 = new Resource({
+const resource1 = new ResourceModel({
     category: 'JavaScript',
     title: 'Learn javaScript',
     description: "resource to learn JavaScript (absolute beginners) - PS.: You get a nice certificate of completion for any courses taken at MVA",
@@ -31,7 +36,7 @@ const resource1 = new Resource({
     public: true,
     likes: [resource1Likes]  
 })
-const resource2 = new Resource({
+const resource2 = new ResourceModel({
     category: 'React',
     title: 'React Dev tools!',
     description: "Building a RESTful API with Node.js",
@@ -40,14 +45,14 @@ const resource2 = new Resource({
     public: true,
     likes: [resource2Likes]      
 })
-const jj = new User({
+const jj = new UserModel({
     name: 'JJ',
     email: '12@12.ga',
     password: 'wdi16',
     resources: [resource1, resource2]
 })
 
-User.remove({})
+UserModel.remove({})
     .then(() => jj.save())
     .then(() => console.log('Successful Save'))
     .then(() => mongoose.connection.close())
