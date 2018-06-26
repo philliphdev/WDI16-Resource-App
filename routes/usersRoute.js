@@ -1,13 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const { UserModel } = require('../db/schema')
+const express = require('express')
+const router = express.Router({ mergeParams: true })
+const Schema = require('../db/schema')
+const UserModel = Schema.UserModel
 
-router.get('/', function (req, res) {
-  UserModel.find().then((users) => {
-    res.send({
-      users
-    })
-  })
+router.get('/', async (req, res) => {
+  try {
+    const users = await UserModel.find({})
+    res.json(users)
+  }
+  catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
 })
 
 router.get('/:id', async (req, res) => {
