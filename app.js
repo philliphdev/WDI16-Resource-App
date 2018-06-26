@@ -8,8 +8,8 @@ const mongoose = require('mongoose')
 const path = require('path');
 
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/indexRoute');
+const usersRouter = require('./routes/usersRoute');
 
 const app = express();
 
