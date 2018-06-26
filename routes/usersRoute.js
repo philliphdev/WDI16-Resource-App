@@ -14,16 +14,10 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
-  const user = await UserModel.findById(req.params.id)
-  res.send({
-    user
-  })
-})
-
 router.patch('/:id', async (req, res) => {
-  const user = await UserModel.findById(req.params.userId)
-
+  console.log('Patch', req.params.id)
+  const user = await UserModel.findById(req.params.id)
+  
   user.name = req.body.name
   user.email = req.body.email
   user.password = req.body.password
@@ -39,6 +33,13 @@ router.post('/', (req, res) => {
   const newUser = new UserModel(req.body)
   newUser.save().then((user) => {
     res.send(user)
+  })
+})
+
+router.get('/:id', async (req, res) => {
+  const user = await UserModel.findById(req.params.id)
+  res.send({
+    user
   })
 })
 

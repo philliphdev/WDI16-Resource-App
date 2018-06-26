@@ -32,13 +32,12 @@ class Users extends Component {
     }
 
     render() {
-        console.log(this.state.users)
         const listOfUsers = this.state.users.map((user) => {
             return (
                 <Card>
                     <Link 
                         key={user._id}
-                        to={`/${user._id}`}>
+                        to={`/users/${user._id}`}>
                         <h3>Name: {user.name}</h3>
                         <img src={user.image} />
                     </Link>

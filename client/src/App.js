@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Guests from './components/Guests'
 import Home from './components/Home'
 import NavBar from './components/NavBar'
-import Resources from './components/Resources'
+import Resources from './components/resources/Resources'
 import styled from 'styled-components'
 import theme from 'styled-theming'
-import Users from './components/Users'
+import Users from './components/users/Users'
+import User from './components/users/User'
 const boxBackgroundColor = theme('mode', {
   light: '#fff',
   dark: '#000',
@@ -28,6 +29,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/users" component={Users} />
+          <Route exact path='/users/:userId' component={User} />
           <Route exact path="/guests" component={Guests} />
           <Route exact path="/resources" component={Resources} />
         </Switch>
