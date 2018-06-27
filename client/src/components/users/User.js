@@ -41,11 +41,21 @@ class User extends Component {
         this.setState({ user: res.data.user })
     }
 
+    deleteUser = async (user) => {
+        const { userId } = this.props.match.params
+        axios.delete(`/api/users/${userId}`)
+        console.log('Deleted user')
+    }
+    catch(err) {
+        console.log(err)
+    }
+
     render() {
         const userToEdit = (
             <div>
                 <div>
                     <p>Name: </p>
+                    <button onClick={this.deleteUser}>X</button>
                     <form onSubmit={this.updateUser}>
                         <input
                             

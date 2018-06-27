@@ -37,13 +37,20 @@ router.patch('/:id', async (req, res) => {
   })
 })
 
-
-
 router.get('/:id', async (req, res) => {
   const user = await UserModel.findById(req.params.id)
   res.send({
     user
   })
 })
+
+router.delete('/:id', async (req, res) => {
+  console.log('Delete ', req.params.id)
+  const user = await UserModel.findById(req.params.id)
+  user.remove()
+  const saved = await user.save()
+  res.json(saved)
+} 
+)
 
 module.exports = router;
