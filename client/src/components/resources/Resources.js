@@ -49,7 +49,7 @@ class Resources extends Component {
                         </Link>
                         <h5>Category: {resource.category}</h5>
                         <h5>Title: {resource.title}</h5>
-                        {/* <p>{resource.description}</p> */}
+                        <p>{resource.description}</p>
                         <img src={resource.image} />
                     </Card>
                 )
