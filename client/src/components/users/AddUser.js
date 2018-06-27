@@ -25,7 +25,7 @@ class AddUser extends Component {
         const res = await axios.post('/api/users', 
          this.state.newUser
         )
-        this.props.history.push(`/users/${res.data._id}`)
+        this.props.history.push(`/users/`)
     }
 
     render() {

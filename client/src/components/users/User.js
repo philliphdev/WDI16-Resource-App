@@ -9,7 +9,7 @@ class User extends Component {
     state = {
         user: {}
     }
-    componentDidMount() {
+    componentWillMount() {
         this.getUserInfo()
     }
 
@@ -32,10 +32,12 @@ class User extends Component {
     }
 
     updateUser = async () => {
+        console.log('line 36', this.props.match.params)
         const { userId } = this.props.match.params
-        const res = await axios.patch(`/api/users/${userId}`, {
-            user: this.state.user
-        })
+        const res = await axios.patch(`/api/users/${userId}`, 
+            this.state.user
+        )
+        console.log('line 36', this.props.match.params)
         this.setState({ user: res.data.user })
     }
 
@@ -44,13 +46,13 @@ class User extends Component {
             <div>
                 <div>
                     <p>Name: </p>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.updateUser}>
                         <input
                             
                             type="text"
-                            name="userName"
+                            name="name"
                             placeholder={this.state.user.name}
-                            
+                            onChange={this.handleChange}
                         />
                         <input
                             placeholder="Email"
