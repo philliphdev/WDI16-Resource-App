@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import Resources from './components/resources/Resources'
 import styled from 'styled-components'
 import theme from 'styled-theming'
+import AddUser from './components/users/AddUser'
 import Users from './components/users/Users'
 import User from './components/users/User'
 const boxBackgroundColor = theme('mode', {
@@ -28,6 +29,7 @@ class App extends Component {
         </Box>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/adduser" component={AddUser} />
           <Route exact path="/users" component={Users} />
           <Route exact path='/users/:userId' component={User} />
           <Route exact path="/guests" component={Guests} />

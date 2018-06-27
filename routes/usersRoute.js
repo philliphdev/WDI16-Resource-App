@@ -14,6 +14,14 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/', (req, res) => {
+  const newUser = new UserModel(req.body)
+  console.log('line 18 ', req.body)
+  newUser.save().then((user) => {
+    res.send(user)
+  })
+})
+
 router.patch('/:id', async (req, res) => {
   console.log('Patch', req.params.id)
   const user = await UserModel.findById(req.params.id)
@@ -29,12 +37,7 @@ router.patch('/:id', async (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
-  const newUser = new UserModel(req.body)
-  newUser.save().then((user) => {
-    res.send(user)
-  })
-})
+
 
 router.get('/:id', async (req, res) => {
   const user = await UserModel.findById(req.params.id)

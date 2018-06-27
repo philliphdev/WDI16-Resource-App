@@ -3,13 +3,29 @@ import axios from 'axios'
 
 class AddUser extends Component {
     state= {
-    newUser: ''
+    newUser: {
+        name: '',
+        email: '',
+        password: '',
+        // image: ''
     }
+    }
+
+    handleChange = (event) => {
+        const fieldValue = event.target.name
+        const addUser = { ...this.state.newUser }
+        addUser[fieldValue] = event.target.value
+        console.log(fieldValue)
+        this.setState({ newUser: addUser })
+    }
+
     handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post('/api/users', {
-            user: this.state.newUser
-        })
+        console.log('NewUser', this.state.newUser)
+        const res = await axios.post('/api/users', 
+         this.state.newUser
+        )
+        this.props.history.push(`/users/${res.data._id}`)
     }
 
     render() {
@@ -20,27 +36,27 @@ class AddUser extends Component {
                     <input
                         placeholder="User Name"
                         type="text"
-                        name="userName"
-                        value={this.state.userName}
+                        name="name"                   
+                        onChange={this.handleChange}
                     />
                     <input
                         placeholder="Email"
                         type="email"
                         name="email"
-                        value={this.state.user.email}
+                        onChange={this.handleChange}
                     />
                     <input
                         placeholder="Password"
                         type="password"
                         name="password"
-                        value={this.state.user.password}
+                        onChange={this.handleChange}
                     />
-                    <input
+                    {/* <input
                         placeholder="Photo URL"
                         type="text"
                         name="image"
-                        value={this.state.user.image}
-                    />
+                        onChange={this.handleChange}
+                    /> */}
                     <button type="submit">Submit</button>
                 </form>
             </div>
