@@ -44,53 +44,46 @@ class User extends Component {
             <div>
                 <div>
                     <p>Name: </p>
-                    <input
-                        type="text"
-                        name="name"
-                        value={this.state.user.name}
-                        onChange={(event) => this.handleChange(event, this.state.user._id)}
-                        onBlur={() => this.updateUser(this.state.user._id)}
-                    />
-                </div>
-                <div>
-                    <p>Email: </p>
-                    <input
-                        type="text"
-                        name="email"
-                        value={this.state.user.email}
-                        onChange={(event) => this.handleChange(event, this.state.user._id)}
-                        onBlur={() => this.updateUser(this.state.user._id)}
-                    />
-                </div>
-                <div>
-                    <p>Password: </p>
-                    <input
-                        type="text"
-                        name="password"
-                        value={this.state.user.password}
-                        onChange={(event) => this.handleChange(event, this.state.user._id)}
-                        onBlur={() => this.updateUser(this.state.user._id)}
-                    />
-                </div>
-                <div>
-                    <p>Photo URL: </p>
-                    <input
-                        type="text"
-                        name="image"
-                        value={this.state.user.image}
-                        onChange={(event) => this.handleChange(event, this.state.user._id)}
-                        onBlur={() => this.updateUser(this.state.user._id)}
-                    />
+                    <form onSubmit={this.handleSubmit}>
+                        <input
+                            
+                            type="text"
+                            name="userName"
+                            placeholder={this.state.user.name}
+                            
+                        />
+                        <input
+                            placeholder="Email"
+                            type="email"
+                            name="email"
+                            value={this.state.user.email}
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            value={this.state.user.password}
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            placeholder="Photo URL"
+                            type="text"
+                            name="image"
+                            value={this.state.user.image}
+                            onChange={this.handleChange}
+                        />
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
         )
-        console.log(this.state)
         return (
             <Grid container spacing={24} style={{ padding: 24 }}>
                 {userToEdit}
             </Grid>
-        );
+        )
     }
 }
 
-export default User;
+export default User
