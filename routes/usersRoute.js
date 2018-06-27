@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   console.log('Patch', req.params.id)
   const user = await UserModel.findById(req.params.id)
-  
+  console.log('line 20 ', req.body.name)
   user.name = req.body.name
   user.email = req.body.email
   user.password = req.body.password
