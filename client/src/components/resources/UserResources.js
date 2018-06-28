@@ -12,11 +12,12 @@ flexDirection: column;
 `
 
 class Resources extends Component {
+    
     state = {
         user: {},
         resources: []
     }
-
+   
     componentWillMount() {
         this.getUserInfo()
     }
@@ -43,7 +44,7 @@ class Resources extends Component {
     // }
 
     render() {
-
+        console.log('Line 46 ', this.props.url)
         const userResources = this.state.resources.map((resource) => {
             console.log('line 38 ', resource)
             return (
@@ -58,6 +59,7 @@ class Resources extends Component {
                     <h5>Title: {resource.title}</h5>
                     <p>{resource.description}</p>
                     <img src={resource.image} />
+                    <Link to={`${this.props.match.url}/${resource._id}`}>User Resource</Link>
                 </Card>
             )
         })
@@ -73,6 +75,7 @@ class Resources extends Component {
                             {userResources}
                         </Grid>
                     </div>
+                    console.log('Line 19 ', this.props.match.url)
                 </Grid>
             </DivContainer>
         );
