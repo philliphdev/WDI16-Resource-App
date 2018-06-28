@@ -29,7 +29,7 @@ class Resource extends Component {
 
     handleChange = (event) => {
         const fieldValue = event.target.name
-        const editResource = { ...this.state.resource }
+        const editResource = {...this.state.resource}
         editResource[fieldValue] = event.target.value
         console.log(fieldValue)
         this.setState({user: editResource})

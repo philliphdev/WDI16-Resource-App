@@ -13,12 +13,12 @@ const LikesSchema = new Schema({
 const ResourceSchema = new Schema({
     category: {
         type: String,
-        required: true,
+        required: false,
         default: "General"
     },
     title: {
         type: String,
-        required: true,
+        required: false,
         default: "New Resource"
     },
     description: {
@@ -33,7 +33,7 @@ const ResourceSchema = new Schema({
     },
     public: {
         type: Boolean,
-        required: true,
+        required: false,
         default: false,
     },
     likes: [LikesSchema]

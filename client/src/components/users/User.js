@@ -88,7 +88,7 @@ class User extends Component {
                         <button type="submit">Submit</button>
                     </form>
                 </div>
-                <Link to={`/users/${this.state.user._id}/resources`}>User Resource</Link>
+                <Link to={`/users/${this.state.user._id}/resources`}>View User Resources</Link>
             </div>
         )
         return (

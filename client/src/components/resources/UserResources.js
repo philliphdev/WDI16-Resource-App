@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import AddResource from './AddResource'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
@@ -12,14 +13,21 @@ flexDirection: column;
 `
 
 class Resources extends Component {
-    
+
     state = {
         user: {},
-        resources: []
+        resources: [],
+        isShowing: false
     }
-   
+
     componentWillMount() {
         this.getUserInfo()
+    }
+
+    toggleIsShowing = () => {
+        this.setState({
+            isShowing: !this.state.isShowing
+        })
     }
 
     getUserInfo = async () => {
@@ -63,15 +71,20 @@ class Resources extends Component {
                 </Card>
             )
         })
-        // console.log('line 55 ', listOfResources)
         return (
             <DivContainer>
-                <Link to="/">User Resources</Link>
+                <Link to={`/users/${this.props.match.params.userId}/resources`}>New User Resource</Link>
                 <Grid container spacing={24} style={{ padding: 24 }}>
                     <div>
                         <h1>Resources</h1>
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             <div></div>
+                            <button onClick={this.toggleIsShowing}>Add Resource</button>
+                            {
+                                this.state.isShowing ?
+                                    <AddResource />
+                                    : null
+                            }
                             {userResources}
                         </Grid>
                     </div>
