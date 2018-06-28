@@ -11,14 +11,8 @@ class Resource extends Component {
         resource: {}
     }
     componentDidMount() {
-       
-        // const { userId } = this.props.match.params
-        console.log("resource page ", this.props.match.params.userId)
-
         const userId = this.props.match.params.userId
         const resourceId = this.props.match.params.resourceId
-        
-        // this.setState({ user: res.data.user })
         this.getInfo()
     }
 
@@ -26,10 +20,7 @@ class Resource extends Component {
         try {
             const userId = this.props.match.params.userId
             const resourceId = this.props.match.params.resourceId
-            // const { userId } = this.props.match.params
-            console.log("resource page 30", this.props.match.params)
             const res = await axios.get(`/api/users/${userId}/resources/${resourceId}`)
-            console.log('line 32 ', res)
             this.setState({resource: res.data})
         } catch (err) {
             console.log(err)
@@ -55,8 +46,9 @@ class Resource extends Component {
     }
 
     deleteResource = async (user) => {
-        const { userId } = this.props.match.params
-        const { resourceId } = this.props.match.params.resourceId
+        const userId = this.props.match.params.userId
+        const resourceId = this.props.match.params.resourceId
+        console.log('line 51', userId, resourceId)
         axios.delete(`/api/users/${userId}/resources/${resourceId}`)
         console.log('Deleted Resource')
     }

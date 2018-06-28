@@ -75,7 +75,6 @@ class Resources extends Component {
                             {userResources}
                         </Grid>
                     </div>
-                    console.log('Line 19 ', this.props.match.url)
                 </Grid>
             </DivContainer>
         );
