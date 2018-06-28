@@ -6,6 +6,34 @@ const UserModel = Schema.UserModel
 const ResourceModel = Schema.ResourceModel
 const LikesModel = Schema.LikesModel
 
+
+
+// router.get('/', async (req, res) => {
+//     try {
+//         const user = await resourceModel.findById(req.params.id)
+//         const resource = user.resource
+//         res.json(resource)
+//     } catch (err) {
+//         res.send(err)
+//     }
+// })
+
+
+router.get('/:resourceId', async (req, res) => {
+    console.log('line 26 ')
+    try {
+        console.log('line 27 ')
+        const user = await UserModel.findById(req.params.userId)
+        console.log('line 28 ', user)
+        const resource = user.resources.id(req.params.resourceId)
+        console.log('line 29 ', resource)
+        res.json(resource)
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+
 router.post('/', function (req, res) {
 
     UserModel.findById(req.params.userId).then((user) => {
@@ -19,7 +47,7 @@ router.post('/', function (req, res) {
     })
 })
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:resourceId', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
     const resourceId = req.params.id
     const editResource = user.resources.id(resourceId)

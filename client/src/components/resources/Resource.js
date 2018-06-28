@@ -10,7 +10,7 @@ class Resource extends Component {
         user: [],
         resource: {}
     }
-    componentWillMount() {
+    componentDidMount() {
        
         // const { userId } = this.props.match.params
         console.log("resource page ", this.props.match.params.userId)
@@ -27,10 +27,10 @@ class Resource extends Component {
             const userId = this.props.match.params.userId
             const resourceId = this.props.match.params.resourceId
             // const { userId } = this.props.match.params
-            // console.log("resource page ", this.props.match.params)
+            console.log("resource page 30", this.props.match.params)
             const res = await axios.get(`/api/users/${userId}/resources/${resourceId}`)
             console.log('line 32 ', res)
-            this.setState({ user: res.data.user })
+            this.setState({resource: res.data})
         } catch (err) {
             console.log(err)
         }
@@ -41,7 +41,7 @@ class Resource extends Component {
         const editResource = { ...this.state.resource }
         editResource[fieldValue] = event.target.value
         console.log(fieldValue)
-        this.setState({ user: editResource })
+        this.setState({user: editResource})
     }
 
     updateResource = async () => {
@@ -51,7 +51,7 @@ class Resource extends Component {
             this.state.user
         )
         console.log('line 36', this.props.match.params)
-        this.setState({ user: res.data.user })
+        this.setState({user: res.data.user})
     }
 
     deleteResource = async (user) => {
@@ -68,7 +68,7 @@ class Resource extends Component {
             <div>
                 <div>
                     <h3>Resource Page</h3>
-                    <p>Name: </p>
+                    <p>Name: {this.state.resource.title}</p>
                     <button onClick={this.deleteResource}>X</button>
                     <form onSubmit={this.updateResource}>
                         <input
@@ -105,7 +105,7 @@ class Resource extends Component {
             </div>
         )
         return (
-            <Grid container spacing={24} style={{ padding: 24 }}>
+            <Grid container spacing={24} style={{padding: 24}}>
                 {resourceToEdit}
             </Grid>
         )
