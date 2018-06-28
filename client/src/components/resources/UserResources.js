@@ -46,7 +46,7 @@ class Resources extends Component {
     render() {
         console.log('Line 46 ', this.props.url)
         const userResources = this.state.resources.map((resource) => {
-            console.log('line 38 ', resource)
+            console.log('line 38 Resource ', resource)
             return (
                 <Card>
                     <Link

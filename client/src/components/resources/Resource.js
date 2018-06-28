@@ -11,14 +11,25 @@ class Resource extends Component {
         resource: {}
     }
     componentWillMount() {
+       
+        // const { userId } = this.props.match.params
+        console.log("resource page ", this.props.match.params.userId)
+
+        const userId = this.props.match.params.userId
+        const resourceId = this.props.match.params.resourceId
+        
+        // this.setState({ user: res.data.user })
         this.getInfo()
     }
 
     getInfo = async () => {
         try {
-            const { userId } = this.props.match.params
-            console.log("resource page ", this.props.match.params)
-            const res = await axios.get(`/api/users/${userId}`)
+            const userId = this.props.match.params.userId
+            const resourceId = this.props.match.params.resourceId
+            // const { userId } = this.props.match.params
+            // console.log("resource page ", this.props.match.params)
+            const res = await axios.get(`/api/users/${userId}/resources/${resourceId}`)
+            console.log('line 32 ', res)
             this.setState({ user: res.data.user })
         } catch (err) {
             console.log(err)

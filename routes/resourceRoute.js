@@ -1,6 +1,6 @@
 let express = require('express')
 let router = express.Router({ mergeParams: true })
-const Schema = require('./schema')
+const Schema = require('../db/schema')
 
 const UserModel = Schema.UserModel
 const ResourceModel = Schema.ResourceModel
