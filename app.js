@@ -44,8 +44,9 @@ app.get('/', (req,res) => {
 app.use('/', indexRouter);
 app.use('/api/adduser', usersRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/users/:userId/resources/:resourceId', resourceRouter)
 app.use('/api/users/:userId/resources', resourceRouter)
-// app.use('/api/users/:userId/resources/:resourceId', resourceRouter)
+
 
 
 // app.use('/api/users/:userId', usersRouter)

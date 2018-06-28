@@ -17,6 +17,14 @@ class Resources extends Component {
     state = {
         user: {},
         resources: [],
+        resource: {
+            category: '',
+            title: '',
+            description: '',
+            url: '',
+            image: '',
+            public: ''
+        },
         isShowing: false
     }
 
@@ -40,21 +48,56 @@ class Resources extends Component {
         }
     }
 
-    // getUser = async () => {
-    //     try {
-    //         const res = await axios.get('/api/users')
-    //         this.setState({ user: res.data })
-    //         console.log("Get all users Data ", res.data)
-    //     }
-    //     catch (err) {
-    //         console.log(err)
-    //     }
+    handleChange = (event) => {
+        const fieldValue = event.target.name
+        const AddResource = { ...this.state.resource }
+        AddResource[fieldValue] = event.target.value
+        console.log(fieldValue)
+        this.setState({ resource: AddResource })
+    }
+
+    // handleSubmit = async (event) => {
+    //     event.preventDefault()
+    //     console.log('resource', this.state.resource)
+    //     const res = await axios.post('/api/users/:userId/resources/:resourceId',
+    //         this.state.resource
+    //     )
+    //     // this.props.history.push(`/users/`)
     // }
 
+    newResource = async (event) => {
+        event.preventDefault()
+        const userId = this.props.match.params.userId
+        const resourceId = this.props.match.params.resourceId
+        console.log('line 72 UR ', userId)
+        const payload = {
+            category: this.state.resource.category,
+            title: this.state.resource.title,
+            description: this.state.resource.description,
+            url: this.state.resource.url,
+            image: this.state.resource.image,
+            public: this.state.resource.public
+        }
+        const clearForm = {
+            category: '',
+            title: '',
+            description: '',
+            url: '',
+            image: '',
+            public: ''
+        }
+
+        await axios.post(`/api/users/${userId}/resources/${resourceId}`, payload)
+        // await this.getUserInfo()
+        // this.setState({
+        //     isShowing: false,
+        //     resource: clearForm
+        // })
+    }
+
+
     render() {
-        console.log('Line 46 ', this.props.url)
         const userResources = this.state.resources.map((resource) => {
-            console.log('line 38 Resource ', resource)
             return (
                 <Card>
                     <Link
@@ -82,7 +125,11 @@ class Resources extends Component {
                             <button onClick={this.toggleIsShowing}>Add Resource</button>
                             {
                                 this.state.isShowing ?
-                                    <AddResource />
+                                    <AddResource
+                                        newResource={this.newResource}
+                                        handleChange={this.handleChange}
+                                        resource={this.state.resource}
+                                    />
                                     : null
                             }
                             {userResources}

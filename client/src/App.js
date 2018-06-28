@@ -35,8 +35,9 @@ class App extends Component {
           <Route exact path="/users" component={Users} />
           <Route exact path="/guests" component={Guests} />
           <Route exact path="/resources" component={Resources} />
-          <Route exact path="/users/:userId/resources" component={UserResources} />
           <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
+          <Route exact path="/users/:userId/resources" component={UserResources} />
+      
           <Route exact path="/users/:userId" component={User} />
         </Switch>
         </div>
