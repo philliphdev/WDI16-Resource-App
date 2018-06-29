@@ -34,12 +34,12 @@ class Users extends Component {
     deleteUser = async (user) => {
         // const userId = this.props.match.params, userId
         axios.delete(`/api/users/${user}`)
-        .then((res) => {
-            this.setState({
-                users: this.state.users
-            })
-        })
-        // this.props.history.push(`/users/`)
+        // .then((res) => {
+        //     this.setState({
+        //         users: this.state.users
+        //     })
+        // })
+        this.props.history.push(`/users/`)
         console.log('Deleted user')
     }
 
