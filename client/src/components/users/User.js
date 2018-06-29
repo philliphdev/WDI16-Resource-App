@@ -7,7 +7,12 @@ import Grid from '@material-ui/core/Grid'
 
 class User extends Component {
     state = {
-        user: {}
+        user: {
+            name: '',
+            email: '',
+            password: '',
+            image: ''
+        }
     }
     componentWillMount() {
         this.getUserInfo()
@@ -61,28 +66,28 @@ class User extends Component {
                             
                             type="text"
                             name="name"
-                            placeholder={this.state.user.name}
+                            value={this.state.user.name}
                             onChange={this.handleChange}
                         />
                         <input
-                            placeholder="Email"
+                          
                             type="email"
                             name="email"
-                           
+                            value={this.state.user.email}
                             onChange={this.handleChange}
                         />
                         <input
-                            placeholder="Password"
+                           
                             type="password"
                             name="password"
-                           
+                            value={this.state.user.password}
                             onChange={this.handleChange}
                         />
                         <input
                             placeholder="Photo URL"
                             type="text"
                             name="image"
-                          
+                            value={this.state.user.image}
                             onChange={this.handleChange}
                         />
                         <button type="submit">Submit</button>

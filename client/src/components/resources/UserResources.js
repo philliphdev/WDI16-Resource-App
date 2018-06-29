@@ -59,7 +59,7 @@ class Resources extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         console.log('resource', this.state.resource)
-        const res = await axios.post('/api/users/:userId/resources/:resourceId',
+        const res = await axios.post('/api/users/:userId/resources',
             this.state.resource
         )
         // this.props.history.push(`/users/`)

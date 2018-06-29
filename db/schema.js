@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
-const LikesSchema = new Schema({
+// const Schema = mongoose.Schema;
+const LikesSchema = new mongoose.Schema({
     likedByUser: {
         type: String
     },
@@ -10,7 +10,7 @@ const LikesSchema = new Schema({
     }
 })
 
-const ResourceSchema = new Schema({
+const ResourceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: false,
@@ -39,7 +39,7 @@ const ResourceSchema = new Schema({
     likes: [LikesSchema]
 })
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
 name: {
     type: String,
     required: false
@@ -59,12 +59,12 @@ image: {
 resources: [ResourceSchema]
 })
 
-const UserModel = mongoose.model('User', UserSchema)
-const ResourceModel = mongoose.model('Resource', ResourceSchema)
 const LikesModel = mongoose.model('Likes', LikesSchema)
+const ResourceModel = mongoose.model('Resource', ResourceSchema)
+const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = {
-  UserModel,
-  ResourceModel,
-  LikesModel
+    LikesModel,
+    ResourceModel,
+    UserModel
 }

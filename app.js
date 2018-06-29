@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(__dirname + '/client/build/'))
 
@@ -42,14 +42,11 @@ app.get('/', (req,res) => {
 })
 
 app.use('/', indexRouter);
-app.use('/api/users/:userId/resources', resourceRouter)
-app.use('/api/adduser', usersRouter)
+// app.use('/api/adduser', usersRouter)
 app.use('/api/users', usersRouter)
-// app.use('/api/users/:userId/resources/:resourceId', resourceRouter)
-
-
-
 // app.use('/api/users/:userId', usersRouter)
+app.use('/api/users/:userId/resources', resourceRouter)
+// app.use('/api/users/:userId/resources/:resourceId', resourceRouter)
 
 
 // catch 404 and forward to error handler
