@@ -33,20 +33,32 @@ router.get('/:resourceId', async (req, res) => {
     }
 })
 
-
-router.post('/', function (req, res) {
-    console.log('Line 38 RR', req.params.userId)
-    UserModel.findById(req.params.userId).then((user) => {
-        const newResource = new ResourceModel(req.body)
-        console.log('Line 39', newResource)
-        user.resource.push(newResource)
-        return user.save()
-    }).then(savedUser => {
-        res.send({
-            user: savedUser
-        })
+router.post('/', async (req, res) => {
+    console.log('line 37')
+    const user = await UserModel.findById(req.params.userId)
+    const newResource = await new ResourceModel(req.body)
+    user.resources.push(newResource)
+    user.save
+    res.send ({
+        user
     })
+
 })
+
+
+// router.post('/', function (req, res) {
+//     console.log('Line 38 RR', req.params.userId)
+//     UserModel.findById(req.params.userId).then((user) => {
+//         const newResource = new ResourceModel(req.body)
+//         console.log('Line 39', newResource)
+//         user.resource.push(newResource)
+//         return user.save()
+//     }).then(savedUser => {
+//         res.send({
+//             user: savedUser
+//         })   
+//     })
+// })
 
 router.patch('/:resourceId', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)

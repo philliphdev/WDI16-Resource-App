@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AddResource from './AddResource'
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components';
 
@@ -56,14 +56,14 @@ class Resources extends Component {
         this.setState({ resource: AddResource })
     }
 
-    // handleSubmit = async (event) => {
-    //     event.preventDefault()
-    //     console.log('resource', this.state.resource)
-    //     const res = await axios.post('/api/users/:userId/resources/:resourceId',
-    //         this.state.resource
-    //     )
-    //     // this.props.history.push(`/users/`)
-    // }
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        console.log('resource', this.state.resource)
+        const res = await axios.post('/api/users/:userId/resources/:resourceId',
+            this.state.resource
+        )
+        // this.props.history.push(`/users/`)
+    }
 
     newResource = async (event) => {
         event.preventDefault()
@@ -87,21 +87,21 @@ class Resources extends Component {
             public: ''
         }
 
-        await axios.post(`/api/users/${userId}/resources/${resourceId}`, payload)
-        // await this.getUserInfo()
-        // this.setState({
-        //     isShowing: false,
-        //     resource: clearForm
-        // })
+        await axios.post(`/api/users/${userId}/resources/`, payload)
+        await this.getUserInfo()
+        this.setState({
+            isShowing: false,
+            resource: clearForm
+        })
     }
 
 
     render() {
         const userResources = this.state.resources.map((resource) => {
             return (
-                <Card>
+                <Card key={resource._id}>
                     <Link
-                        key={resource._id}
+
                         to={`/resources/${resource._id}`}>
                         {/* <h3>Name: {user.name}</h3> */}
                         {/* <img src={user.image} /> */}
@@ -109,7 +109,7 @@ class Resources extends Component {
                     <h5>Category: {resource.category}</h5>
                     <h5>Title: {resource.title}</h5>
                     <p>{resource.description}</p>
-                    <img src={resource.image} />
+                    <img src={resource.image} alt="Resource" />
                     <Link to={`${this.props.match.url}/${resource._id}`}>User Resource</Link>
                 </Card>
             )
@@ -129,6 +129,7 @@ class Resources extends Component {
                                         newResource={this.newResource}
                                         handleChange={this.handleChange}
                                         resource={this.state.resource}
+                                        handleSubmit={this.handleSubmit}
                                     />
                                     : null
                             }

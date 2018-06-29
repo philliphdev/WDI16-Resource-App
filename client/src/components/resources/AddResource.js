@@ -1,6 +1,7 @@
 import React from 'react'
 
 function AddResourceForm(props) {
+    console.log(props)
     return (
             <div>
                 <h2>Add Resource</h2>

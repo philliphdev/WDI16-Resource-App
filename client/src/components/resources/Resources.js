@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components';
 
@@ -39,18 +39,18 @@ class Resources extends Component {
             const userResources = user.resources.map((resource) => {
                 console.log('line 38 ', resource)
                 return (
-                    <Card>
+                    <Card key={resource._id}>
                         <Link
                             key={resource._id}
                             to={`/resources/${resource._id}`}>
                             <h3>Name: {user.name}</h3>
                             
-                            <img src={user.image} />
+                            <img src={user.image} alt="user"/>
                         </Link>
                         <h5>Category: {resource.category}</h5>
                         <h5>Title: {resource.title}</h5>
                         <p>{resource.description}</p>
-                        <img src={resource.image} />
+                        <img src={resource.image} alt="Resource" />
                     </Card>
                 )
             })

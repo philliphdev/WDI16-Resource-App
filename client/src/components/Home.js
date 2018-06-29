@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 class Home extends Component {
- 
-
-
     render() {
         return (
             <div>
-                HomePage
-                <Link to="/users">Users</Link>
+                <form action="/users">
+                    <input type="text" placeholder="User ID" />
+                    <input type="text" placeholder="password" />
+                    <input type="submit" value="Log in" />
+                </form>
+
             </div>
         );
     }

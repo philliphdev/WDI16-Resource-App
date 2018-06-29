@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Card from '@material-ui/core/Card'
+// import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 class User extends Component {
     state = {
@@ -68,21 +68,21 @@ class User extends Component {
                             placeholder="Email"
                             type="email"
                             name="email"
-                            value={this.state.user.email}
+                           
                             onChange={this.handleChange}
                         />
                         <input
                             placeholder="Password"
                             type="password"
                             name="password"
-                            value={this.state.user.password}
+                           
                             onChange={this.handleChange}
                         />
                         <input
                             placeholder="Photo URL"
                             type="text"
                             name="image"
-                            value={this.state.user.image}
+                          
                             onChange={this.handleChange}
                         />
                         <button type="submit">Submit</button>

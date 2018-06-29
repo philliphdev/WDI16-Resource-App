@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import Card from '@material-ui/core/Card'
+// import { Link } from 'react-router-dom'
+// import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 class Resource extends Component {
     state = {
@@ -11,8 +11,6 @@ class Resource extends Component {
         resource: {}
     }
     componentDidMount() {
-        const userId = this.props.match.params.userId
-        const resourceId = this.props.match.params.resourceId
         this.getInfo()
     }
 
@@ -74,21 +72,21 @@ class Resource extends Component {
                             placeholder="title"
                             type="text"
                             name="title"
-                            value={this.state.resource.title}
+                          
                             onChange={this.handleChange}
                         />
                         <input
                             placeholder="Description"
                             type="text"
                             name="description"
-                            value={this.state.resource.description}
+                       
                             onChange={this.handleChange}
                         />
                         <input
                             placeholder="Logo URL"
                             type="text"
                             name="image"
-                            value={this.state.resource.image}
+                       
                             onChange={this.handleChange}
                         />
                         <button type="submit">Submit</button>

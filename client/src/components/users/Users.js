@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components';
 
@@ -37,12 +37,12 @@ class Users extends Component {
 render() {
     const listOfUsers = this.state.users.map((user) => {
         return (
-            <Card>
+            <Card key={user._id}>
                 <Link
                     key={user._id}
                     to={`/users/${user._id}`}>
-                    <h3>Name: {user.name}</h3>
-                    <img src={user.image} />
+                    <h3 key={user._id}>Name: {user.name}</h3>
+                    <img src={user.image} alt="user"/>
                 </Link>
             </Card>
 
