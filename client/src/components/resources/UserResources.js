@@ -16,6 +16,7 @@ class Resources extends Component {
 
     state = {
         user: {},
+        userId: '',
         resources: [],
         resource: {
             category: '',
@@ -42,7 +43,9 @@ class Resources extends Component {
         try {
             const { userId } = this.props.match.params
             const res = await axios.get(`/api/users/${userId}`)
-            this.setState({ resources: res.data.user.resources })
+            this.setState({ resources: res.data.user.resources,
+                userId: userId
+            })
         } catch (err) {
             console.log(err)
         }
@@ -58,8 +61,8 @@ class Resources extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        console.log('resource', this.state.resource)
-        const res = await axios.post('/api/users/:userId/resources',
+        console.log('l64 resource', this.state.resource)
+        const res = await axios.post(`/api/users/${this.state.userId}/resources`,
             this.state.resource
         )
         // this.props.history.push(`/users/`)
@@ -123,7 +126,7 @@ class Resources extends Component {
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             <div></div>
                             <button onClick={this.toggleIsShowing}>Add Resource</button>
-                            {
+                            {  
                                 this.state.isShowing ?
                                     <AddResource
                                         newResource={this.newResource}

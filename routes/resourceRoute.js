@@ -34,12 +34,13 @@ router.get('/:resourceId', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    console.log('line 37')
+    console.log('line 37', req.params.userId)
     const user = await UserModel.findById(req.params.userId)
     console.log('line 39', user)
     const newResource = await new ResourceModel(req.body)
+    console.log('rr l41 ', newResource)
     user.resources.push(newResource)
-    user.save
+    user.save()
     res.send ({
         user
     })
