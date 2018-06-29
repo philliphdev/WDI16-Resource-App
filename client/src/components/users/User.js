@@ -40,10 +40,12 @@ class User extends Component {
         console.log('line 36', this.props.match.params)
         const { userId } = this.props.match.params
         const res = await axios.patch(`/api/users/${userId}`, 
-            this.state.user
+            this.state.user,
+            this.props.history.push(`/users/`)
         )
         console.log('line 36', this.props.match.params)
         this.setState({ user: res.data.user })
+        
     }
 
     deleteUser = async (user) => {

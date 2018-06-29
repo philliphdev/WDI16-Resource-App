@@ -5,7 +5,7 @@ function AddResourceForm(props) {
     return (
             <div>
                 <h2>Add Resource</h2>
-                <form onSubmit={props.handleSubmit}>
+                <form onSubmit={props.newResource}>
                     <input
                         value={props.resource.category}
                         type="text"
@@ -30,12 +30,12 @@ function AddResourceForm(props) {
                         name="url"
                         onChange={props.handleChange}
                     />
-                    <input
+                    {/* <input
                         placeholder="Logo URL"
                         type="text"
                         name="image"
                         onChange={props.handleChange}
-                    />
+                    /> */}
                     {/* <input
                         placeholder="Public"
                         type="text"

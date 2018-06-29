@@ -32,8 +32,6 @@ class Users extends Component {
     }
 
 
-
-
 render() {
     const listOfUsers = this.state.users.map((user) => {
         return (

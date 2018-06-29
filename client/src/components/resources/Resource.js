@@ -49,6 +49,8 @@ class Resource extends Component {
         console.log('line 51', userId, resourceId)
         axios.delete(`/api/users/${userId}/resources/${resourceId}`)
         console.log('Deleted Resource')
+        this.props.history.push(`/users/${userId}/resources`)
+        
     }
     catch(err) {
         console.log(err)

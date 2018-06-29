@@ -20,26 +20,36 @@ const boxBackgroundColor = theme('mode', {
 const Box = styled.div`
   background-color: ${boxBackgroundColor};
 `
+const MainContainer = styled.div`
+  width: 800px
+  height: 800px
+  backgroundRepeat: no-repeat
+  backgroundPosition: center center
+  backgroundSize: cover
+
+  background-image: url(public/images/wdi16bg.jpg)
+`
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-        <Box>
-          <NavBar />
-        </Box>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/adduser" component={AddUser} />
-          <Route exact path="/users" component={Users} />
-          <Route exact path="/users/:userId" component={User} />
-          <Route exact path="/guests" component={Guests} />
-          <Route exact path="/resources" component={Resources} />
-          {/* <Route exact path="/users/:userId/resources/:resourceId" component={Resource} /> */}
-          <Route exact path="/users/:userId/resources" component={UserResources} />
-      
-        </Switch>
+          <Box>
+            <NavBar />
+          </Box>
+        <MainContainer>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/adduser" component={AddUser} />
+            <Route exact path="/users" component={Users} />
+            <Route exact path="/users/:userId" component={User} />
+            <Route exact path="/guests" component={Guests} />
+            <Route exact path="/resources" component={Resources} />
+            <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
+            <Route exact path="/users/:userId/resources" component={UserResources} />
+          </Switch>
+        </MainContainer>
         </div>
       </Router>
     );

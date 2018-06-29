@@ -23,10 +23,11 @@ class Resources extends Component {
             title: '',
             description: '',
             url: '',
-            image: '',
+            // image: '',
             public: ''
         },
-        isShowing: false
+        isShowing: false,
+        clickedDelete: true
     }
 
     componentWillMount() {
@@ -39,11 +40,18 @@ class Resources extends Component {
         })
     }
 
+    toggleDelete = (event) => {
+        this.setState({
+            clickedDelete: !this.state.clickedDelete
+        })
+    }
+
     getUserInfo = async () => {
         try {
             const { userId } = this.props.match.params
             const res = await axios.get(`/api/users/${userId}`)
-            this.setState({ resources: res.data.user.resources,
+            this.setState({
+                resources: res.data.user.resources,
                 userId: userId
             })
         } catch (err) {
@@ -63,9 +71,10 @@ class Resources extends Component {
         event.preventDefault()
         console.log('l64 resource', this.state.resource)
         const res = await axios.post(`/api/users/${this.state.userId}/resources`,
-            this.state.resource
+            this.state.resource,
+            this.setState
         )
-        // this.props.history.push(`/users/`)
+        // this.props.history.push(`/users/${this.state.userId}`)
     }
 
     newResource = async (event) => {
@@ -78,7 +87,7 @@ class Resources extends Component {
             title: this.state.resource.title,
             description: this.state.resource.description,
             url: this.state.resource.url,
-            image: this.state.resource.image,
+            // image: this.state.resource.image,
             public: this.state.resource.public
         }
         const clearForm = {
@@ -92,19 +101,40 @@ class Resources extends Component {
 
         await axios.post(`/api/users/${userId}/resources/`, payload)
         await this.getUserInfo()
-        this.setState({
-            isShowing: false,
-            resource: clearForm
-        })
+            .then((res) => {
+                this.setState({
+                    resources: this.state.resources,
+                    userId: userId,
+                    isShowing: false,
+                    resource: clearForm
+                })
+            })
     }
 
+    deleteResource = async (resource) => {
+        const userId = this.props.match.params.userId
+        console.log('line 51', userId)
+        axios.delete(`/api/users/${userId}/resources/${resource}`)
+            .then((res) => {
+                this.setState({
+                    resources: res.data.user.resources,
+                    userId: userId
+                })
+            })
+        console.log('Deleted Resource')
+        console.log(this.state.clickedDelete)
+    }
 
     render() {
-        const userResources = this.state.resources.map((resource) => {
+        const userResources = this.state.resources.map((resource, index) => {
+            console.log(index)
             return (
-                <Card key={resource._id}>
+                <Card key={index}>
+                    <button
+                        type="submit"
+                        onClick={() => this.deleteResource(resource._id)}>X
+                </button>
                     <Link
-
                         to={`/resources/${resource._id}`}>
                         {/* <h3>Name: {user.name}</h3> */}
                         {/* <img src={user.image} /> */}
@@ -117,6 +147,7 @@ class Resources extends Component {
                 </Card>
             )
         })
+        const reverseOrder = userResources.reverse()
         return (
             <DivContainer>
                 <Link to={`/users/${this.props.match.params.userId}/resources`}>New User Resource</Link>
@@ -126,7 +157,7 @@ class Resources extends Component {
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             <div></div>
                             <button onClick={this.toggleIsShowing}>Add Resource</button>
-                            {  
+                            {
                                 this.state.isShowing ?
                                     <AddResource
                                         newResource={this.newResource}
@@ -136,7 +167,7 @@ class Resources extends Component {
                                     />
                                     : null
                             }
-                            {userResources}
+                            {reverseOrder}
                         </Grid>
                     </div>
                 </Grid>
