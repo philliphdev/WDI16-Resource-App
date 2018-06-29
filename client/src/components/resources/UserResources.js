@@ -133,7 +133,7 @@ class Resources extends Component {
                     <button
                         type="submit"
                         onClick={() => this.deleteResource(resource._id)}>X
-                </button>
+                    </button>
                     <Link
                         to={`/resources/${resource._id}`}>
                         {/* <h3>Name: {user.name}</h3> */}

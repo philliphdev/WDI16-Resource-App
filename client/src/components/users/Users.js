@@ -31,36 +31,51 @@ class Users extends Component {
         }
     }
 
+    deleteUser = async (user) => {
+        // const userId = this.props.match.params, userId
+        axios.delete(`/api/users/${user}`)
+        .then((res) => {
+            this.setState({
+                users: this.state.users
+            })
+        })
+        // this.props.history.push(`/users/`)
+        console.log('Deleted user')
+    }
 
-render() {
-    const listOfUsers = this.state.users.map((user) => {
+    render() {
+        const listOfUsers = this.state.users.map((user, index) => {
+            return (
+                <Card key={index}>
+                    <button
+                        type="submit"
+                        onClick={() => this.deleteUser(user._id)}>X
+                    </button>
+                    <Link
+                        key={user._id}
+                        to={`/users/${user._id}`}>
+                        <h3 key={user._id}>Name: {user.name}</h3>
+                        <img src={user.image} alt="user" />
+                    </Link>
+                </Card>
+
+            )
+        })
         return (
-            <Card key={user._id}>
-                <Link
-                    key={user._id}
-                    to={`/users/${user._id}`}>
-                    <h3 key={user._id}>Name: {user.name}</h3>
-                    <img src={user.image} alt="user"/>
-                </Link>
-            </Card>
-
-        )
-    })
-    return (
-        <DivContainer>
-            <Link to="/adduser">Create a New User</Link>
-            <Grid container spacing={24} style={{ padding: 24 }}>
-                <div>
-                    <h1>List of Users</h1>
-                    <Grid container spacing={24} style={{ padding: 24 }}>
-                        <div></div>
-                        {listOfUsers}
-                    </Grid>
-                </div>
-            </Grid>
-        </DivContainer>
-    );
-}
+            <DivContainer>
+                <Link to="/adduser">Create a New User</Link>
+                <Grid container spacing={24} style={{ padding: 24 }}>
+                    <div>
+                        <h1>List of Users</h1>
+                        <Grid container spacing={24} style={{ padding: 24 }}>
+                            <div></div>
+                            {listOfUsers}
+                        </Grid>
+                    </div>
+                </Grid>
+            </DivContainer>
+        );
+    }
 }
 
 export default Users;
