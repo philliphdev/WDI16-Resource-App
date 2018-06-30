@@ -21,36 +21,36 @@ const Box = styled.div`
   background-color: ${boxBackgroundColor};
 `
 const MainContainer = styled.div`
-  width: 800px
-  height: 800px
-  backgroundRepeat: no-repeat
-  backgroundPosition: center center
-  backgroundSize: cover
-
-  background-image: url(public/images/wdi16bg.jpg)
+  width: 100%
+  height: 100%
+  // background-position: center
+  // background-size: cover
+  // background-repeat: no-repeat
+  // background: rgb(2,0,36);
+  // background: linear-gradient(5deg, rgba(2,0,36,1) 0%, rgba(100,162,154,1) 55%); 
 `
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <MainContainer>
           <Box>
             <NavBar />
           </Box>
-        <MainContainer>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/adduser" component={AddUser} />
-            <Route exact path="/users" component={Users} />
-            <Route exact path="/users/:userId" component={User} />
-            <Route exact path="/guests" component={Guests} />
-            <Route exact path="/resources" component={Resources} />
-            <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
-            <Route exact path="/users/:userId/resources" component={UserResources} />
-          </Switch>
+          <MainContainer>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/adduser" component={AddUser} />
+              <Route exact path="/users" component={Users} />
+              <Route exact path="/users/:userId" component={User} />
+              <Route exact path="/guests" component={Guests} />
+              <Route exact path="/resources" component={Resources} />
+              <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
+              <Route exact path="/users/:userId/resources" component={UserResources} />
+            </Switch>
+          </MainContainer>
         </MainContainer>
-        </div>
       </Router>
     );
   }

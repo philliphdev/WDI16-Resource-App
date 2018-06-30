@@ -8,7 +8,8 @@ import styled from 'styled-components';
 
 const DivContainer = styled.div`
 display: flex;
-flexDirection: column;
+flex-direction: column;
+margin: 1em
 `
 
 class Resources extends Component {
@@ -39,18 +40,18 @@ class Resources extends Component {
             const userResources = user.resources.map((resource) => {
                 console.log('line 38 ', resource)
                 return (
-                    <Card key={resource._id}>
+                    <Card className="local-card" key={resource._id}>
                         <Link
                             key={resource._id}
                             to={`/resources/${resource._id}`}>
                             <h3>Name: {user.name}</h3>
                             
-                            <img src={user.image} alt="user"/>
+                            <img className="local-img" src={user.image} alt="user"/>
                         </Link>
                         <h5>Category: {resource.category}</h5>
                         <h5>Title: {resource.title}</h5>
                         <p>{resource.description}</p>
-                        <img src={resource.image} alt="Resource" />
+                        <img className="local-img" src={resource.image} alt="Resource" />
                     </Card>
                 )
             })
@@ -62,13 +63,10 @@ class Resources extends Component {
             <DivContainer>
                 <Link to="/">Create a New Resource</Link>
                 <Grid container spacing={24} style={{ padding: 24 }}>
-                    <div>
                         <h1>Resources</h1>
                         <Grid container spacing={24} style={{ padding: 24 }}>
-                            <div></div>
                             {listOfResources}
                         </Grid>
-                    </div>
                 </Grid>
             </DivContainer>
         );

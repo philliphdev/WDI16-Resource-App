@@ -9,7 +9,10 @@ import styled from 'styled-components';
 
 const DivContainer = styled.div`
 display: flex;
-flexDirection: column;
+flex-direction: column;
+`
+const CardDiv = styled.div`
+width: 350px;
 `
 
 class Resources extends Component {
@@ -129,7 +132,7 @@ class Resources extends Component {
         const userResources = this.state.resources.map((resource, index) => {
             console.log(index)
             return (
-                <Card key={index}>
+                <Card className="local-card" key={index}>
                     <button
                         type="submit"
                         onClick={() => this.deleteResource(resource._id)}>X
@@ -142,21 +145,22 @@ class Resources extends Component {
                     <h5>Category: {resource.category}</h5>
                     <h5>Title: {resource.title}</h5>
                     <p>{resource.description}</p>
-                    <img src={resource.image} alt="Resource" />
+                    <div>
+                    <img className="local-img" src={resource.image} alt="Resource" />
+                    </div>
+                    <CardDiv>
                     <Link to={`${this.props.match.url}/${resource._id}`}>User Resource</Link>
+                    </CardDiv>
                 </Card>
             )
         })
         const reverseOrder = userResources.reverse()
         return (
             <DivContainer>
-                <Link to={`/users/${this.props.match.params.userId}/resources`}>New User Resource</Link>
-                <Grid container spacing={24} style={{ padding: 24 }}>
+                <Grid style={{ padding: 24 }}>
                     <div>
                         <h1>Resources</h1>
-                        <Grid container spacing={24} style={{ padding: 24 }}>
-                            <div></div>
-                            <button onClick={this.toggleIsShowing}>Add Resource</button>
+                        <button onClick={this.toggleIsShowing}>Add Resource</button>
                             {
                                 this.state.isShowing ?
                                     <AddResource
@@ -167,6 +171,10 @@ class Resources extends Component {
                                     />
                                     : null
                             }
+
+                        <Grid container spacing={24} style={{ padding: 24 }}>
+
+
                             {reverseOrder}
                         </Grid>
                     </div>

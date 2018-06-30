@@ -8,7 +8,8 @@ import styled from 'styled-components';
 
 const DivContainer = styled.div`
 display: flex;
-flexDirection: column;
+flex-direction: column;
+margin: 1em
 `
 
 class Users extends Component {
@@ -46,7 +47,7 @@ class Users extends Component {
     render() {
         const listOfUsers = this.state.users.map((user, index) => {
             return (
-                <Card key={index}>
+                <Card className="local-card" key={index}>
                     <button
                         type="submit"
                         onClick={() => this.deleteUser(user._id)}>X
@@ -66,7 +67,7 @@ class Users extends Component {
                 <Link to="/adduser">Create a New User</Link>
                 <Grid container spacing={24} style={{ padding: 24 }}>
                     <div>
-                        <h1>List of Users</h1>
+                        <h1>Users</h1>
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             <div></div>
                             {listOfUsers}
