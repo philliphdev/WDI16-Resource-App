@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 // import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components';
+import Button from "@material-ui/core/Button";
 
 const DivContainer = styled.div`
 display: flex;
@@ -149,7 +150,7 @@ class Resources extends Component {
                     <img className="local-img" src={resource.image} alt="Resource" />
                     </div>
                     <CardDiv>
-                    <Link to={`${this.props.match.url}/${resource._id}`}>User Resource</Link>
+                    <Link to={`${this.props.match.url}/${resource._id}`}>View Resource</Link>
                     </CardDiv>
                 </Card>
             )
@@ -160,7 +161,8 @@ class Resources extends Component {
                 <Grid style={{ padding: 24 }}>
                     <div>
                         <h1>Resources</h1>
-                        <button onClick={this.toggleIsShowing}>Add Resource</button>
+                        <Button onClick={this.toggleIsShowing}>
+                        {this.state.isShowing ? "Cancel" : "Add Resource" }</Button>
                             {
                                 this.state.isShowing ?
                                     <AddResource

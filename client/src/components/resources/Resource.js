@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
-// import Card from '@material-ui/core/Card'
+import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
-// import styled from 'styled-components'
+import styled from 'styled-components'
+import Button from "@material-ui/core/Button"
+
+const ResourceForm = styled.form `
+input[type=text] {
+    width: 100%;
+    padding: 5px 2px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 3px;
+}
+`
+
 
 class Resource extends Component {
     state = {
@@ -59,17 +72,19 @@ class Resource extends Component {
         const resourceToEdit = (
             <div>
                 <div>
-                    <h3>Resource Page</h3>
-                    <p>Name: {this.state.resource.title}</p>
+                    <h3>Edit Resource</h3>
+                    <Card className="local-resource-card">
                     <button onClick={this.deleteResource}>X</button>
-                    <form onSubmit={this.updateResource}>
-                        <input
-                            
+                    <p>Title: {this.state.resource.title}</p>
+                    <ResourceForm onSubmit={this.updateResource}>
+                        <label>Category: </label>
+                        <input                            
                             type="text"
                             name="category"
                             placeholder={this.state.resource.category}
                             onChange={this.handleChange}
                         />
+                            <label>Title: </label>
                         <input
                             placeholder="title"
                             type="text"
@@ -77,13 +92,14 @@ class Resource extends Component {
                           
                             onChange={this.handleChange}
                         />
+                            <label>Description: </label>
                         <input
                             placeholder="Description"
                             type="text"
                             name="description"
-                       
                             onChange={this.handleChange}
                         />
+                            <label>Logo URL: </label>
                         <input
                             placeholder="Logo URL"
                             type="text"
@@ -91,8 +107,10 @@ class Resource extends Component {
                        
                             onChange={this.handleChange}
                         />
-                        <button type="submit">Submit</button>
-                    </form>
+                        <Button type="submit">Submit</Button>
+                    </ResourceForm>
+                    <img className="local-img" src={this.state.resource.image} alt="Resource" />
+                    </Card>
                 </div>
             </div>
         )
@@ -105,4 +123,3 @@ class Resource extends Component {
 }
 
 export default Resource
-
