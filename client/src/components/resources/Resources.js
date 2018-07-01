@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const DivContainer = styled.div`
 display: flex;
 flex-direction: column;
-margin: 1em
+margin: 1em;
 `
 
 class Resources extends Component {

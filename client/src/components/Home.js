@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import theme from 'styled-theming'
+import Button from "@material-ui/core/Button"
 
 const HomeContainer = styled.div`
   display: flex
@@ -25,7 +26,7 @@ class Home extends Component {
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
                         <input type="text" placeholder="password" />
-                        <input type="submit" value="Log in" />
+                        <Button type="submit">Log in</Button>
                     </form>
                 </InsideDiv>
             </HomeContainer>

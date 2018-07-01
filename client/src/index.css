@@ -27,3 +27,13 @@ body {
   margin: .5em;
   padding: 20px;
 }
+
+button:hover {
+  
+    background-color: red
+  
+}
+
+a:hover {
+  background-color: aqua
+}

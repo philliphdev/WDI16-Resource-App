@@ -16,6 +16,9 @@ input[type=text] {
     border-radius: 3px;
 }
 `
+const CenterDiv = styled.div`
+margin: auto
+`
 
 
 class Resource extends Component {
@@ -70,8 +73,7 @@ class Resource extends Component {
     }
     render() {
         const resourceToEdit = (
-            <div>
-                <div>
+                <CenterDiv>
                     <h3>Edit Resource</h3>
                     <Card className="local-resource-card">
                     <button onClick={this.deleteResource}>X</button>
@@ -111,8 +113,7 @@ class Resource extends Component {
                     </ResourceForm>
                     <img className="local-img" src={this.state.resource.image} alt="Resource" />
                     </Card>
-                </div>
-            </div>
+                </CenterDiv>
         )
         return (
             <Grid container spacing={24} style={{padding: 24}}>

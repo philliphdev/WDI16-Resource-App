@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const DivContainer = styled.div`
 display: flex;
 flex-direction: column;
-margin: 1em
+margin: auto;
 `
 
 class Users extends Component {
@@ -63,18 +63,17 @@ class Users extends Component {
             )
         })
         return (
-            <DivContainer>
-                <Link to="/adduser">Create a New User</Link>
+            <div>
+                <p className="local-hover" to="/adduser">Create a New User</p>
                 <Grid container spacing={24} style={{ padding: 24 }}>
-                    <div>
+                    <DivContainer>
                         <h1>Users</h1>
                         <Grid container spacing={24} style={{ padding: 24 }}>
-                            <div></div>
                             {listOfUsers}
                         </Grid>
-                    </div>
+                    </DivContainer>
                 </Grid>
-            </DivContainer>
+            </div>
         );
     }
 }
