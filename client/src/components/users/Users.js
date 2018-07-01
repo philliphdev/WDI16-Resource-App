@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 // import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
-import styled from 'styled-components';
+import styled from 'styled-components'
+import Button from "@material-ui/core/Button"
 
 const DivContainer = styled.div`
 display: flex;
@@ -64,9 +65,9 @@ class Users extends Component {
         })
         return (
             <div>
-                <p className="local-hover" to="/adduser">Create a New User</p>
+                <Button type="submit" className="local-hover" href="/adduser">Create a New User</Button>
                 <Grid container spacing={24} style={{ padding: 24 }}>
-                    <DivContainer>
+                    <DivContainer>  
                         <h1>Users</h1>
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             {listOfUsers}

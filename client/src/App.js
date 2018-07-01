@@ -12,6 +12,7 @@ import theme from 'styled-theming'
 import AddUser from './components/users/AddUser'
 import Users from './components/users/Users'
 import User from './components/users/User'
+import bgImage from './components/resources/images/webdevbg.jpg'
 const boxBackgroundColor = theme('mode', {
   light: '#fff',
   dark: '#000',
@@ -21,13 +22,12 @@ const Box = styled.div`
   background-color: ${boxBackgroundColor};
 `
 const MainContainer = styled.div`
-  width: 100%
-  height: 100%
-  // background-position: center
-  // background-size: cover
-  // background-repeat: no-repeat
-  // background: rgb(2,0,36);
-  // background: linear-gradient(5deg, rgba(2,0,36,1) 0%, rgba(100,162,154,1) 55%); 
+  width: 100%;
+  height: 100%;
+  background-image: url(${bgImage});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `
 
 class App extends Component {
