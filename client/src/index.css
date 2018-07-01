@@ -30,10 +30,17 @@ body {
 
 button:hover {
   
-    background-color: red
+    background-color: red;
   
 }
 
 a:hover {
-  background-color: aqua
+  background-color: aqua;
 }
+
+.local-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
