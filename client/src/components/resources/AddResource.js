@@ -12,9 +12,6 @@ input[type=text] {
     border-radius: 3px;
 }
 `
-
-
-
 function AddResourceForm(props) {
     console.log(props)
     return (
@@ -23,7 +20,6 @@ function AddResourceForm(props) {
                 <ResourceForm className="local-card" onSubmit={props.newResource}>                
                 <label>Category:</label>
                     <input
-                        value={props.resource.category}
                         type="text"
                         name="category"
                         onChange={props.handleChange}
@@ -45,25 +41,10 @@ function AddResourceForm(props) {
                         type="text"
                         name="url"
                         onChange={props.handleChange}
-                    />
-                  
-                    {/* <input
-                        placeholder="Logo URL"
-                        type="text"
-                        name="image"
-                        onChange={props.handleChange}
-                    /> */}
-                    {/* <input
-                        placeholder="Public"
-                        type="text"
-                        name="public"
-                        onChange={props.handleChange}
-                    /> */}
-                    
+                    />                    
                     <Button type="submit">Submit</Button>
                 </ResourceForm>
             </div>
         );
     }
-
 export default AddResourceForm;

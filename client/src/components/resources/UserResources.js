@@ -160,7 +160,7 @@ class Resources extends Component {
             <DivContainer>
                 <Grid style={{ padding: 24 }}>
                     <div>
-                        <h1>Resources</h1>
+                        <h1>User - Resources</h1>
                         <Button onClick={this.toggleIsShowing}>
                         {this.state.isShowing ? "Cancel" : "Add Resource" }</Button>
                             {

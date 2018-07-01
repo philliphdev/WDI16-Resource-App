@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import theme from 'styled-theming'
 import Button from "@material-ui/core/Button"
 import WdiImage from './resources/images/wdi16bg.jpg'
+import { Link } from 'react-router-dom'
 
 const wdi16Image=WdiImage
 
@@ -48,7 +49,7 @@ class Home extends Component {
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
                         <input type="text" placeholder="password" />
-                        <Button type="submit">Log in</Button>
+                        <Link type="submit" to="/users">LOG IN</Link>
                     </form>
                 </InsideDiv>
             
