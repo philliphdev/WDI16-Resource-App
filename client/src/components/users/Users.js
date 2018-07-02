@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import NewUser from '../resources/NewUser'
-// import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components'
 import Button from "@material-ui/core/Button"
@@ -25,7 +24,7 @@ class Users extends Component {
         isShowing: false
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getAllUsers()
     }
 
@@ -39,7 +38,6 @@ class Users extends Component {
         try {
             const res = await axios.get('/api/users')
             this.setState({ users: res.data })
-            console.log("Get all users Data ", res.data)
         }
         catch (err) {
             console.log(err)
@@ -47,59 +45,51 @@ class Users extends Component {
     }
 
     deleteUser = async (user) => {
-        // const userId = this.props.match.params, userId
         axios.delete(`/api/users/${user}`)
-        // .then((res) => {
-        //     this.setState({
-        //         users: this.state.users
-        //     })
-        // })
-        this.props.history.push(`/users/`)
+        .then((res) => {
+            this.setState({
+                users: this.state.users
+        })
         console.log('Deleted user')
+    })
     }
 
     handleChange = (event) => {
         const fieldValue = event.target.name
         const addUNew = { ...this.state.user }
         addUNew[fieldValue] = event.target.value
-        console.log(fieldValue)
         this.setState({ user: addUNew })
     }
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post('/api/users', 
-         this.state.user
+        const res = await axios.post('/api/users',
+            this.state.user
         )
-        // this.props.history.push(`/users/`)
+        console.log(res)
     }
 
     newUser = async (event) => {
         event.preventDefault()
-        console.log('line 79  add user ')
         const payload = {
             name: this.state.user.name,
             email: this.state.user.email,
             password: this.state.user.password,
         }
-        console.log('l 88 ', payload)
         const clearForm = {
             name: '',
             email: '',
             password: '',
         }
-
         await axios.post(`/api/users`, payload)
             .then((res) => {
                 this.setState({
                     users: this.state.users,
                     isShowing: false,
-                    resource: clearForm
+                    user: clearForm
                 })
             })
     }
-
-
 
     render() {
         const listOfUsers = this.state.users.map((user, index) => {
@@ -121,24 +111,20 @@ class Users extends Component {
         })
         return (
             <div>
-                
-                {/* <Button type="submit" className="local-hover" href="/adduNew">Create a New User</Button> */}
                 <Grid container spacing={24} style={{ padding: 24 }}>
-                {/* <Link to={`/adduNew`}>Add User</Link> */}
-                    <DivContainer>  
+                    <DivContainer>
                         <h1>Users</h1>
                         <Button onClick={this.toggleIsShowing}>
-                        {this.state.isShowing ? "Cancel" : "Add User" }</Button>
-                            {
-                                this.state.isShowing ?
-                                    <NewUser
-                                        newUser={this.newUser}
-                                        handleChange={this.handleChange}
-                                        user={this.state.user}
-                                        // handleSubmit={this.handleSubmit}
-                                    />
-                                    : null
-                            }
+                            {this.state.isShowing ? "Cancel" : "Add User"}</Button>
+                        {
+                            this.state.isShowing ?
+                                <NewUser
+                                    newUser={this.newUser}
+                                    handleChange={this.handleChange}
+                                    user={this.state.user}
+                                />
+                                : null
+                        }
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             {listOfUsers}
                         </Grid>
@@ -150,5 +136,3 @@ class Users extends Component {
 }
 
 export default Users;
-
-

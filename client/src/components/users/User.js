@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import styled from 'styled-components'
 import Button from "@material-ui/core/Button"
 
-const UserForm = styled.form `
+const UserForm = styled.form`
 input[type=text],[type=email],[type=password] {
     width: 100%;
     padding: 5px 2px;
@@ -22,8 +22,6 @@ button {
     margin: 5px 0;
 }
 `
-
-
 class User extends Component {
     state = {
         user: {
@@ -51,20 +49,17 @@ class User extends Component {
         const fieldValue = event.target.name
         const editUser = { ...this.state.user }
         editUser[fieldValue] = event.target.value
-        console.log(fieldValue)
         this.setState({ user: editUser })
     }
 
     updateUser = async () => {
-        console.log('line 36', this.props.match.params)
         const { userId } = this.props.match.params
-        const res = await axios.patch(`/api/users/${userId}`, 
+        const res = await axios.patch(`/api/users/${userId}`,
             this.state.user,
             this.props.history.push(`/users/`)
         )
-        console.log('line 36', this.props.match.params)
         this.setState({ user: res.data.user })
-        
+
     }
 
     deleteUser = async (user) => {
@@ -83,40 +78,40 @@ class User extends Component {
                 <CenterDiv>
                     <p>Name: </p>
                     <Card className="local-resource-card">
-                    <button onClick={this.deleteUser}>X</button>
-                    <UserForm onSubmit={this.updateUser}>
-                    <label>Name: </label>
-                        <input                        
-                            type="text"
-                            name="name"
-                            value={this.state.user.name}
-                            onChange={this.handleChange}
-                        />
-                        <label>Email: </label>
-                        <input             
-                            type="email"
-                            name="email"
-                            value={this.state.user.email}
-                            onChange={this.handleChange}
-                        />
-                        <label>Password: </label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={this.state.user.password}
-                            onChange={this.handleChange}
-                        />
-                        <label>Photo URL: </label>
-                        <input
-                            type="text"
-                            name="image"
-                            value={this.state.user.image}
-                            onChange={this.handleChange}
-                        />
-                        <Button type="submit">Submit</Button>
-                    </UserForm>
-                    <img className="local-img" src={this.state.user.image} alt="User" />
-                <Link to={`/users/${this.state.user._id}/resources`}>View User Resources</Link>
+                        <button onClick={this.deleteUser}>X</button>
+                        <UserForm onSubmit={this.updateUser}>
+                            <label>Name: </label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={this.state.user.name}
+                                onChange={this.handleChange}
+                            />
+                            <label>Email: </label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={this.state.user.email}
+                                onChange={this.handleChange}
+                            />
+                            <label>Password: </label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={this.state.user.password}
+                                onChange={this.handleChange}
+                            />
+                            <label>Photo URL: </label>
+                            <input
+                                type="text"
+                                name="image"
+                                value={this.state.user.image}
+                                onChange={this.handleChange}
+                            />
+                            <Button type="submit">Submit</Button>
+                        </UserForm>
+                        <img className="local-img" src={this.state.user.image} alt="User" />
+                        <Link to={`/users/${this.state.user._id}/resources`}>View User Resources</Link>
                     </Card>
                 </CenterDiv>
             </div>

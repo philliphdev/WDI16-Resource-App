@@ -3,16 +3,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import styled from 'styled-components'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
-import * as material from 'styled-icons/material'
-import * as octicons from 'styled-icons/octicons'
 import { Home } from 'styled-icons/fa-solid/Home'
 import { Newspaper } from 'styled-icons/fa-regular/Newspaper'
 import { UserFriends } from 'styled-icons/fa-solid/UserFriends'

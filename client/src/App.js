@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Guests from './components/Guests'
 import Home from './components/Home'
 import NavBar from './components/NavBar'
 import Resources from './components/resources/Resources'
@@ -44,7 +43,6 @@ class App extends Component {
               <Route exact path="/adduser" component={AddUser} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/users/:userId" component={User} />
-              <Route exact path="/guests" component={Guests} />
               <Route exact path="/resources" component={Resources} />
               <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
               <Route exact path="/users/:userId/resources" component={UserResources} />

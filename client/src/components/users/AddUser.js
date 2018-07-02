@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 class AddUser extends Component {
-    state= {
-    newUser: {
-        name: '',
-        email: '',
-        password: '',
-        // image: ''
-    }
+    state = {
+        newUser: {
+            name: '',
+            email: '',
+            password: '',
+        }
     }
 
     handleChange = (event) => {
         const fieldValue = event.target.name
         const addUser = { ...this.state.newUser }
         addUser[fieldValue] = event.target.value
-        console.log(fieldValue)
         this.setState({ newUser: addUser })
     }
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post('/api/users', 
-         this.state.newUser
+        const res = await axios.post('/api/users',
+            this.state.newUser
         )
+        console.log(res)
         this.props.history.push(`/users/`)
     }
 
@@ -35,7 +34,7 @@ class AddUser extends Component {
                     <input
                         placeholder="User Name"
                         type="text"
-                        name="name"                   
+                        name="name"
                         onChange={this.handleChange}
                     />
                     <input
@@ -50,12 +49,6 @@ class AddUser extends Component {
                         name="password"
                         onChange={this.handleChange}
                     />
-                    {/* <input
-                        placeholder="Photo URL"
-                        type="text"
-                        name="image"
-                        onChange={this.handleChange}
-                    /> */}
                     <button type="submit">Submit</button>
                 </form>
             </div>

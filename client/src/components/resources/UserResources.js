@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AddResource from './AddResource'
 import Grid from '@material-ui/core/Grid';
-// import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components';
 import Button from "@material-ui/core/Button";
@@ -16,7 +15,6 @@ const CardDiv = styled.div`
 width: 350px;
 padding: 10px 0;
 `
-
 class Resources extends Component {
 
     state = {
@@ -67,31 +65,26 @@ class Resources extends Component {
         const fieldValue = event.target.name
         const AddResource = { ...this.state.resource }
         AddResource[fieldValue] = event.target.value
-        console.log(fieldValue)
         this.setState({ resource: AddResource })
     }
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        console.log('l64 resource', this.state.resource)
         const res = await axios.post(`/api/users/${this.state.userId}/resources`,
             this.state.resource,
             this.setState
         )
-        // this.props.history.push(`/users/${this.state.userId}`)
+        console.log(res)
     }
 
     newResource = async (event) => {
         event.preventDefault()
         const userId = this.props.match.params.userId
-        const resourceId = this.props.match.params.resourceId
-        console.log('line 72 UR ', userId)
         const payload = {
             category: this.state.resource.category,
             title: this.state.resource.title,
             description: this.state.resource.description,
             url: this.state.resource.url,
-            // image: this.state.resource.image,
             public: this.state.resource.public
         }
         const clearForm = {
@@ -117,7 +110,6 @@ class Resources extends Component {
 
     deleteResource = async (resource) => {
         const userId = this.props.match.params.userId
-        console.log('line 51', userId)
         axios.delete(`/api/users/${userId}/resources/${resource}`)
             .then((res) => {
                 this.setState({
@@ -125,13 +117,10 @@ class Resources extends Component {
                     userId: userId
                 })
             })
-        console.log('Deleted Resource')
-        console.log(this.state.clickedDelete)
     }
 
     render() {
         const userResources = this.state.resources.map((resource, index) => {
-            console.log(index)
             return (
                 <Card className="local-card" key={index}>
                     <button
@@ -139,17 +128,15 @@ class Resources extends Component {
                         onClick={() => this.deleteResource(resource._id)}>X
                     </button>
                     <CardDiv>
-                    <Link to={`${this.props.match.url}/${resource._id}`}>View Resource</Link>
+                        <Link to={`${this.props.match.url}/${resource._id}`}>View Resource</Link>
                     </CardDiv>
                     <h5>Category: {resource.category}</h5>
                     <h5>Title: {resource.title}</h5>
                     <p>{resource.description}</p>
                     <CardDiv>
-                    <a href={resource.url} target="_blank">Access Resource Site</a>
+                        <a href={resource.url} target="_blank">Access Resource Site</a>
                     </CardDiv>
                     <img className="local-img" src={resource.image} alt="Resource" />
-                  
-
                 </Card>
             )
         })
@@ -160,17 +147,17 @@ class Resources extends Component {
                     <div>
                         <h1>User - Resources</h1>
                         <Button onClick={this.toggleIsShowing}>
-                        {this.state.isShowing ? "Cancel" : "Add Resource" }</Button>
-                            {
-                                this.state.isShowing ?
-                                    <AddResource
-                                        newResource={this.newResource}
-                                        handleChange={this.handleChange}
-                                        resource={this.state.resource}
-                                        handleSubmit={this.handleSubmit}
-                                    />
-                                    : null
-                            }
+                            {this.state.isShowing ? "Cancel" : "Add Resource"}</Button>
+                        {
+                            this.state.isShowing ?
+                                <AddResource
+                                    newResource={this.newResource}
+                                    handleChange={this.handleChange}
+                                    resource={this.state.resource}
+                                    handleSubmit={this.handleSubmit}
+                                />
+                                : null
+                        }
                         <Grid container spacing={24} style={{ padding: 24 }}>
                             {reverseOrder}
                         </Grid>

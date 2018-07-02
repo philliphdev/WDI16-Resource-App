@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import theme from 'styled-theming'
-import Button from "@material-ui/core/Button"
 import WdiImage from './resources/images/wdi16bg.jpg'
 import { Link } from 'react-router-dom'
 
@@ -42,7 +40,7 @@ class Home extends Component {
     render() {
         return (
             <HomeContainer>
-                <img src={wdi16Image} />
+                <img src={wdi16Image} alt="web background imge"/>
                 <InsideDiv>
                     <form action="/users">
                         <input type="text" placeholder="User ID" />

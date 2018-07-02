@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-// import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
 import styled from 'styled-components'
@@ -19,8 +18,6 @@ input[type=text] {
 const CenterDiv = styled.div`
 margin: auto
 `
-
-
 class Resource extends Component {
     state = {
         user: [],
@@ -45,28 +42,22 @@ class Resource extends Component {
         const fieldValue = event.target.name
         const editResource = {...this.state.resource}
         editResource[fieldValue] = event.target.value
-        console.log(fieldValue)
         this.setState({user: editResource})
     }
 
     updateResource = async () => {
-        console.log('line 36', this.props.match.params)
         const { userId } = this.props.match.params
         const res = await axios.patch(`/api/users/${userId}`, 
             this.state.user
         )
-        console.log('line 36', this.props.match.params)
         this.setState({user: res.data.user})
     }
 
     deleteResource = async (user) => {
         const userId = this.props.match.params.userId
         const resourceId = this.props.match.params.resourceId
-        console.log('line 51', userId, resourceId)
         axios.delete(`/api/users/${userId}/resources/${resourceId}`)
-        console.log('Deleted Resource')
-        this.props.history.push(`/users/${userId}/resources`)
-        
+        this.props.history.push(`/users/${userId}/resources`)       
     }
     catch(err) {
         console.log(err)
@@ -90,8 +81,7 @@ class Resource extends Component {
                         <input
                             placeholder="title"
                             type="text"
-                            name="title"
-                          
+                            name="title"       
                             onChange={this.handleChange}
                         />
                             <label>Description: </label>
@@ -105,8 +95,7 @@ class Resource extends Component {
                         <input
                             placeholder="Logo URL"
                             type="text"
-                            name="image"
-                       
+                            name="image"                     
                             onChange={this.handleChange}
                         />
                         <Button type="submit">Submit</Button>
