@@ -31,21 +31,29 @@ height: 100%
 display: flex;
 justify-content: space-around;
 `
-
+const GuestDiv = styled.div`
+height: 100%
+display: flex;
+padding: 10px;
+justify-content: space-around;  
+`
 class Home extends Component {
     render() {
         return (
             <HomeContainer>
-                <img src={wdi16Image} alt="web background imge"/>
+                <GuestDiv>
+                    <div></div>
+                    <div><Link to="/resources">BROWSE AS GUEST</Link></div>
+                    <div> <Link to="/adduser">REGISTER</Link></div>
+                    <div></div>
+                </GuestDiv>
+                <img src={wdi16Image} alt="web background imge" />
                 <InsideDiv>
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
                         <input type="text" placeholder="password" />
                         <Link type="submit" to="/users">LOG ON</Link>
                     </form>
-                </InsideDiv>
-                <InsideDiv>
-                    <div><Link to="/resources">BROWSE AS GUEST</Link></div>
                 </InsideDiv>
             </HomeContainer>
         );
