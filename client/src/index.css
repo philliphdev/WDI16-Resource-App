@@ -11,7 +11,23 @@ body {
   padding: 12px;
 }
 
+.local-resource-card {
+  max-height: 350px;
+  max-width: 400px;
+  margin: .5em;
+  padding: 12px;
+}
+
+
+.local-user-img {
+  max-height: 40px;
+  max-width: 40px;
+}
 .local-img {
+  max-height: 180px;
+  max-width: 180px;
+}
+.local-resource-img {
   max-height: 180px;
   max-width: 180px;
 }
@@ -42,5 +58,11 @@ a:hover {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.local-space-evenly-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 

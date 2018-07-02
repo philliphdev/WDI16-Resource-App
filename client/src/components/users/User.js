@@ -1,9 +1,28 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import Card from '@material-ui/core/Card'
+import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
-// import styled from 'styled-components'
+import styled from 'styled-components'
+import Button from "@material-ui/core/Button"
+
+const UserForm = styled.form `
+input[type=text],[type=email],[type=password] {
+    width: 100%;
+    padding: 5px 2px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 3px;
+}
+`
+const CenterDiv = styled.div`
+margin: auto
+button {
+    margin: 5px 0;
+}
+`
+
 
 class User extends Component {
     state = {
@@ -14,7 +33,7 @@ class User extends Component {
             image: ''
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         this.getUserInfo()
     }
 
@@ -61,42 +80,45 @@ class User extends Component {
     render() {
         const userToEdit = (
             <div>
-                <div>
+                <CenterDiv>
                     <p>Name: </p>
+                    <Card className="local-resource-card">
                     <button onClick={this.deleteUser}>X</button>
-                    <form onSubmit={this.updateUser}>
-                        <input
-                            
+                    <UserForm onSubmit={this.updateUser}>
+                    <label>Name: </label>
+                        <input                        
                             type="text"
                             name="name"
                             value={this.state.user.name}
                             onChange={this.handleChange}
                         />
-                        <input
-                          
+                        <label>Email: </label>
+                        <input             
                             type="email"
                             name="email"
                             value={this.state.user.email}
                             onChange={this.handleChange}
                         />
+                        <label>Password: </label>
                         <input
-                           
                             type="password"
                             name="password"
                             value={this.state.user.password}
                             onChange={this.handleChange}
                         />
+                        <label>Photo URL: </label>
                         <input
-                            placeholder="Photo URL"
                             type="text"
                             name="image"
                             value={this.state.user.image}
                             onChange={this.handleChange}
                         />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+                        <Button type="submit">Submit</Button>
+                    </UserForm>
+                    <img className="local-img" src={this.state.user.image} alt="User" />
                 <Link to={`/users/${this.state.user._id}/resources`}>View User Resources</Link>
+                    </Card>
+                </CenterDiv>
             </div>
         )
         return (

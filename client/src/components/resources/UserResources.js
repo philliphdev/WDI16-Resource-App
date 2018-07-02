@@ -14,6 +14,7 @@ flex-direction: column;
 `
 const CardDiv = styled.div`
 width: 350px;
+padding: 10px 0;
 `
 
 class Resources extends Component {
@@ -27,7 +28,6 @@ class Resources extends Component {
             title: '',
             description: '',
             url: '',
-            // image: '',
             public: ''
         },
         isShowing: false,
@@ -138,20 +138,18 @@ class Resources extends Component {
                         type="submit"
                         onClick={() => this.deleteResource(resource._id)}>X
                     </button>
-                    <Link
-                        to={`/resources/${resource._id}`}>
-                        {/* <h3>Name: {user.name}</h3> */}
-                        {/* <img src={user.image} /> */}
-                    </Link>
-                    <h5>Category: {resource.category}</h5>
-                    <h5>Title: {resource.title}</h5>
-                    <p>{resource.description}</p>
-                    <div>
-                    <img className="local-img" src={resource.image} alt="Resource" />
-                    </div>
                     <CardDiv>
                     <Link to={`${this.props.match.url}/${resource._id}`}>View Resource</Link>
                     </CardDiv>
+                    <h5>Category: {resource.category}</h5>
+                    <h5>Title: {resource.title}</h5>
+                    <p>{resource.description}</p>
+                    <CardDiv>
+                    <a href={resource.url} target="_blank">Access Resource Site</a>
+                    </CardDiv>
+                    <img className="local-img" src={resource.image} alt="Resource" />
+                  
+
                 </Card>
             )
         })
@@ -173,10 +171,7 @@ class Resources extends Component {
                                     />
                                     : null
                             }
-
                         <Grid container spacing={24} style={{ padding: 24 }}>
-
-
                             {reverseOrder}
                         </Grid>
                     </div>

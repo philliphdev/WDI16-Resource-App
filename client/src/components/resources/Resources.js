@@ -11,6 +11,15 @@ display: flex;
 flex-direction: column;
 margin: 1em;
 `
+const CardDiv = styled.div`
+width: 20em;
+padding: 10px 0;
+p {
+
+}
+`
+
+
 
 class Resources extends Component {
     state = {
@@ -35,23 +44,21 @@ class Resources extends Component {
 
     render() {
         const listOfResources = this.state.users.map((user) => {
-            console.log('Line 36 ', user)
-            
             const userResources = user.resources.map((resource) => {
-                console.log('line 38 ', resource)
                 return (
-                    <Card className="local-card" key={resource._id}>
-                        <Link
-                            key={resource._id}
-                            to={`/resources/${resource._id}`}>
-                            <h3>Name: {user.name}</h3>
-                            
-                            <img className="local-img" src={user.image} alt="user"/>
-                        </Link>
-                        <h5>Category: {resource.category}</h5>
-                        <h5>Title: {resource.title}</h5>
-                        <p>{resource.description}</p>
-                        <img className="local-img" src={resource.image} alt="Resource" />
+                    <Card className="local-resource-card" key={resource._id}>
+                        <CardDiv>
+                            <img className="local-user-img" src={user.image} alt="user" />
+                            <h3>Posted By: {user.name}</h3>
+                            <h5>Category: {resource.category}</h5>
+                            <h5>Title: {resource.title}</h5>
+                            <p>Description: {resource.description}</p>
+                            <img className="local-resource-img" src={resource.image} alt="Resource" />
+                            <div>
+                                <a href={resource.url} target="_blank">Access Resource Site</a>
+                            </div>
+                        </CardDiv>
+
                     </Card>
                 )
             })
@@ -61,12 +68,11 @@ class Resources extends Component {
         console.log('line 55 ', listOfResources)
         return (
             <DivContainer>
-                <Link to="/">Create a New Resource</Link>
                 <Grid container spacing={24} style={{ padding: 24 }}>
-                        <h1>Resources</h1>
-                        <Grid container spacing={24} style={{ padding: 24 }}>
-                            {listOfResources}
-                        </Grid>
+                    <h1>Resources</h1>
+                    <Grid className="local-space-evenly-div" container spacing={24} style={{ padding: 24 }}>
+                        {listOfResources}
+                    </Grid>
                 </Grid>
             </DivContainer>
         );
