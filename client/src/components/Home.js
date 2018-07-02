@@ -8,16 +8,12 @@ const wdi16Image = WdiImage
 const HomeContainer = styled.div`
   display: flex
   flex-direction: column
-  width: 100%
-  height: 100%
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
   img {
       z-index: 2;
       width: 60%;
+      padding: 3em;
       max-width: 600px;
-      margin: auto;
+      margin: 2% auto;
       border-radius: 20px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -45,7 +41,7 @@ class Home extends Component {
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
                         <input type="text" placeholder="password" />
-                        <Link type="submit" to="/users">LOG IN</Link>
+                        <Link type="submit" to="/users">LOG ON</Link>
                     </form>
                 </InsideDiv>
                 <InsideDiv>

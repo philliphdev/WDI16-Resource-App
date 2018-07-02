@@ -3,6 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+html {
+  background-image: url("./components/resources/images/webdevbg.jpg");
+  height: 100%; 
+  background-position: center;
+  background-size: cover;
+}
 
 .local-card {
   max-height: 350px;

@@ -110,7 +110,7 @@ class Users extends Component {
             )
         })
         return (
-            <div>
+           
                 <Grid container spacing={24} style={{ padding: 24 }}>
                     <DivContainer>
                         <h1>Users</h1>
@@ -130,7 +130,7 @@ class Users extends Component {
                         </Grid>
                     </DivContainer>
                 </Grid>
-            </div>
+          
         );
     }
 }

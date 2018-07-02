@@ -20,9 +20,9 @@ const HomeIcon = () => <Home
   color="white"
 />
 
-const ResourcesIcon = () => <Newspaper
+const LogonIcon = () => <Newspaper
   size="24"
-  title="Resources"
+  title="Log On"
   color="white"
 />
 
@@ -44,9 +44,9 @@ const NavBar = () => {
         </Typography>
           <div>
             <NavIcons>
-              <div><Link to="/"><HomeIcon /></Link></div>
               <div><Link to="/users"><UsersIcon /></Link></div>
-              <div><Link to="/resources"><ResourcesIcon /></Link></div>
+              <div><Link to="/"><LogonIcon/></Link></div>
+              <div><Link to="/resources"><HomeIcon /></Link></div>
             </NavIcons>
           </div>
         </div>

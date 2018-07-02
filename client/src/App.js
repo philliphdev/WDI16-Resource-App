@@ -11,7 +11,6 @@ import theme from 'styled-theming'
 import AddUser from './components/users/AddUser'
 import Users from './components/users/Users'
 import User from './components/users/User'
-import bgImage from './components/resources/images/webdevbg.jpg'
 const boxBackgroundColor = theme('mode', {
   light: '#fff',
   dark: '#000',
@@ -20,24 +19,16 @@ const boxBackgroundColor = theme('mode', {
 const Box = styled.div`
   background-color: ${boxBackgroundColor};
 `
-const MainContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url(${bgImage});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-`
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <MainContainer>
+        <div>
           <Box>
             <NavBar />
           </Box>
-          <MainContainer>
+          <div>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/adduser" component={AddUser} />
@@ -47,8 +38,8 @@ class App extends Component {
               <Route exact path="/users/:userId/resources/:resourceId" component={Resource} />
               <Route exact path="/users/:userId/resources" component={UserResources} />
             </Switch>
-          </MainContainer>
-        </MainContainer>
+          </div>
+        </div>
       </Router>
     );
   }
