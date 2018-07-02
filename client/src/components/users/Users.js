@@ -51,6 +51,7 @@ class Users extends Component {
                 users: this.state.users
         })
         console.log('Deleted user')
+        this.getAllUsers()
     })
     }
 
@@ -84,10 +85,10 @@ class Users extends Component {
         await axios.post(`/api/users`, payload)
             .then((res) => {
                 this.setState({
-                    users: this.state.users,
                     isShowing: false,
                     user: clearForm
                 })
+                    this.getAllUsers()
             })
     }
 
