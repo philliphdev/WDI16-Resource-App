@@ -115,7 +115,7 @@ class Resource extends Component {
                         />
                         <Button type="submit">Submit</Button>
                     </ResourceForm>
-                    <img className="local-img" src={this.state.resource.image} alt="Resource" />
+                    <img className="local-resource-img" src={this.state.resource.image} alt="Resource" />
                 </Card>
             </CenterDiv>
         )
