@@ -4,29 +4,11 @@ const Schema = require('../db/schema')
 
 const UserModel = Schema.UserModel
 const ResourceModel = Schema.ResourceModel
-const LikesModel = Schema.LikesModel
-
-
-
-// router.get('/', async (req, res) => {
-//     try {
-//         const user = await resourceModel.findById(req.params.id)
-//         const resource = user.resource
-//         res.json(resource)
-//     } catch (err) {
-//         res.send(err)
-//     }
-// })
-
 
 router.get('/:resourceId', async (req, res) => {
-    console.log('line 26 ')
     try {
-        console.log('line 27 ')
         const user = await UserModel.findById(req.params.userId)
-        console.log('line 28 ', user)
         const resource = user.resources.id(req.params.resourceId)
-        console.log('line 29 ', resource)
         res.json(resource)
     } catch (err) {
         res.send(err)
@@ -34,11 +16,8 @@ router.get('/:resourceId', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    console.log('line 37', req.params.userId)
     const user = await UserModel.findById(req.params.userId)
-    console.log('line 39', user)
     const newResource = await new ResourceModel(req.body)
-    console.log('rr l41 ', newResource)
     user.resources.push(newResource)
     user.save()
     res.send ({
@@ -47,26 +26,10 @@ router.post('/', async (req, res) => {
 
 })
 
-
-// router.post('/', function (req, res) {
-//     console.log('Line 38 RR', req.params.userId)
-//     UserModel.findById(req.params.userId).then((user) => {
-//         const newResource = new ResourceModel(req.body)
-//         console.log('Line 39', newResource)
-//         user.resource.push(newResource)
-//         return user.save()
-//     }).then(savedUser => {
-//         res.send({
-//             user: savedUser
-//         })   
-//     })
-// })
-
 router.patch('/:resourceId', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
-    const resourceId = req.params.id
+    const resourceId = req.params.resourceId
     const editResource = user.resources.id(resourceId)
-
     editResource.category = req.body.category
     editResource.title = req.body.title
     editResource.description = req.body.description

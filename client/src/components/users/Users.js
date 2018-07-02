@@ -50,7 +50,6 @@ class Users extends Component {
             this.setState({
                 users: this.state.users
         })
-        console.log('Deleted user')
         this.getAllUsers()
     })
     }

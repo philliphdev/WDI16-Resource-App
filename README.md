@@ -4,7 +4,7 @@ Project-3 An app for users to collaborate on best practices for Web Design by sh
 
 ## Project 3 description
 
-While taking the GA Web Development Immersive Bootcamp course we are exposed to many sites with documentation, manuals, practice areas, videos and other great resources to help us become better web developers.  With that I decided for project 3 to build an app to track the resources added into Slack by the instructors and students,
+While taking the GA Web Development Immersive Bootcamp course we are exposed to many sites with documentation, manuals, practice areas, videos and other great resources to help us become better web developers.  With that I decided for project 3 to build an app to track the resources added into Slack by the instructors and students.
 
 WDI16 Resource App hosted on Heroku:
 

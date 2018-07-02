@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import styled from 'styled-components'
 import Button from "@material-ui/core/Button"
 
-const ResourceForm = styled.form `
+const ResourceForm = styled.form`
 input[type=text] {
     width: 100%;
     padding: 5px 2px;
@@ -21,7 +21,13 @@ margin: auto
 class Resource extends Component {
     state = {
         user: [],
-        resource: {}
+        resource: {
+            category: '',
+            title: '',
+            description: '',
+            url: '',
+            image: '' 
+        }
     }
     componentDidMount() {
         this.getInfo()
@@ -32,7 +38,7 @@ class Resource extends Component {
             const userId = this.props.match.params.userId
             const resourceId = this.props.match.params.resourceId
             const res = await axios.get(`/api/users/${userId}/resources/${resourceId}`)
-            this.setState({resource: res.data})
+            this.setState({ resource: res.data })
         } catch (err) {
             console.log(err)
         }
@@ -40,72 +46,81 @@ class Resource extends Component {
 
     handleChange = (event) => {
         const fieldValue = event.target.name
-        const editResource = {...this.state.resource}
+        const editResource = { ...this.state.resource }
         editResource[fieldValue] = event.target.value
-        this.setState({user: editResource})
+        this.setState({ resource: editResource })
     }
 
     updateResource = async () => {
-        const { userId } = this.props.match.params
-        const res = await axios.patch(`/api/users/${userId}`, 
-            this.state.user
+        const userId = this.props.match.params.userId
+        const resourceId = this.props.match.params.resourceId
+        const res = await axios.patch(`/api/users/${userId}/resources/${resourceId}`,
+            this.state.resource,
+            this.props.history.push(`/users/${userId}/resources`)
         )
-        this.setState({user: res.data.user})
+        console.log(res)
     }
 
     deleteResource = async (user) => {
         const userId = this.props.match.params.userId
         const resourceId = this.props.match.params.resourceId
         axios.delete(`/api/users/${userId}/resources/${resourceId}`)
-        this.props.history.push(`/users/${userId}/resources`)       
+        this.props.history.push(`/users/${userId}/resources`)
     }
     catch(err) {
         console.log(err)
     }
     render() {
         const resourceToEdit = (
-                <CenterDiv>
-                    <h3>Edit Resource</h3>
-                    <Card className="local-resource-card">
+            <CenterDiv>
+                <h3>Edit Resource</h3>
+                <Card className="local-resource-card">
                     <button onClick={this.deleteResource}>X</button>
                     <p>Title: {this.state.resource.title}</p>
                     <ResourceForm onSubmit={this.updateResource}>
                         <label>Category: </label>
-                        <input                            
+                        <input
                             type="text"
                             name="category"
-                            placeholder={this.state.resource.category}
+                            value={this.state.resource.category}
                             onChange={this.handleChange}
-                        />
-                            <label>Title: </label>
+                            />
+                        <label>Title: </label>
                         <input
-                            placeholder="title"
                             type="text"
-                            name="title"       
+                            name="title"
+                            value={this.state.resource.title}
                             onChange={this.handleChange}
                         />
-                            <label>Description: </label>
+                        <label>Description: </label>
                         <input
-                            placeholder="Description"
                             type="text"
                             name="description"
+                            value={this.state.resource.description}
                             onChange={this.handleChange}
                         />
-                            <label>Logo URL: </label>
+                        <label>Resource URL: </label>
                         <input
-                            placeholder="Logo URL"
                             type="text"
-                            name="image"                     
+                            name="url"
+                            value={this.state.resource.url}
+                            onChange={this.handleChange}
+                        />
+                        <label>Logo URL: </label>
+                        <input
+                            type="text"
+                            name="image"
+                            value={this.state.resource.image}
                             onChange={this.handleChange}
                         />
                         <Button type="submit">Submit</Button>
                     </ResourceForm>
                     <img className="local-img" src={this.state.resource.image} alt="Resource" />
-                    </Card>
-                </CenterDiv>
+                </Card>
+            </CenterDiv>
         )
         return (
-            <Grid container spacing={24} style={{padding: 24}}>
+            <Grid container spacing={24} style={{ padding: 24 }}>
                 {resourceToEdit}
             </Grid>
         )

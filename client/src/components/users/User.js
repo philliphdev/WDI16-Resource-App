@@ -66,7 +66,6 @@ class User extends Component {
         const { userId } = this.props.match.params
         axios.delete(`/api/users/${userId}`)
         this.props.history.push(`/users/`)
-        console.log('Deleted user')
     }
     catch(err) {
         console.log(err)
