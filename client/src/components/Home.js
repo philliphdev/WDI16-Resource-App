@@ -5,12 +5,11 @@ import Button from "@material-ui/core/Button"
 import WdiImage from './resources/images/wdi16bg.jpg'
 import { Link } from 'react-router-dom'
 
-const wdi16Image=WdiImage
+const wdi16Image = WdiImage
 
 const HomeContainer = styled.div`
   display: flex
   flex-direction: column
-  padding: 1em
   width: 100%
   height: 100%
   background-position: center
@@ -36,15 +35,14 @@ const HomeContainer = styled.div`
 const InsideDiv = styled.div`
 height: 100%
 display: flex;
-justify-content: center;
-padding: 30px;
+justify-content: space-around;
 `
 
 class Home extends Component {
     render() {
         return (
             <HomeContainer>
-                    <img src={wdi16Image} />
+                <img src={wdi16Image} />
                 <InsideDiv>
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
@@ -52,7 +50,9 @@ class Home extends Component {
                         <Link type="submit" to="/users">LOG IN</Link>
                     </form>
                 </InsideDiv>
-            
+                <InsideDiv>
+                    <div><Link to="/resources">BROWSE AS GUEST</Link></div>
+                </InsideDiv>
             </HomeContainer>
         );
     }
