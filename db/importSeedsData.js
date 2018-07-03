@@ -1,7 +1,7 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-// mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect('mongodb://heroku_4v51st27:lmdaagd0m33pbdlqu1teggpah@ds117681.mlab.com:17681/heroku_4v51st27')
+mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect('mongodb://heroku_4v51st27:lmdaagd0m33pbdlqu1teggpah@ds117681.mlab.com:17681/heroku_4v51st27')
 
 const Schema = require('./schema')
 
