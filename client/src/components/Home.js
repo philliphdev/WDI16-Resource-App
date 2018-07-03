@@ -51,7 +51,7 @@ class Home extends Component {
                 <InsideDiv>
                     <form action="/users">
                         <input type="text" placeholder="User ID" />
-                        <input type="text" placeholder="password" />
+                        <input type="password" placeholder="password" />
                         <Link type="submit" to="/users">LOG ON</Link>
                     </form>
                 </InsideDiv>
